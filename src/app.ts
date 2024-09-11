@@ -2,7 +2,7 @@ import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import globalErrorHandler from './utils/errorHandler';
 import { ContactMessageController } from './app/modules/contactMessages/contact.messages.controller';
-import { UserController } from './app/modules/user/user.controller';
+import { Routes } from './app/routes/routes';
 const app: Application = express();
 
 // parser
@@ -18,8 +18,8 @@ app.get(
   '/api/v1/contact-messages',
   ContactMessageController.getAllContactMessage,
 );
-app.post('/api/v1/users/create-user', UserController.createUser);
-app.get('/api/v1/users', UserController.getAllUser);
+
+app.use('/api/v1', Routes);
 
 app.use(globalErrorHandler);
 

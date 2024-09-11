@@ -11,7 +11,25 @@ const getAllUser = async () => {
   return result;
 };
 
+const getSingleUser = async (id: string) => {
+  const result = await User.findById(id);
+  return result;
+};
+
+const editUser = async (id: string, payload: Partial<TUser>) => {
+  const result = await User.findByIdAndUpdate(id, payload, { new: true });
+  return result;
+};
+
+const deleteUser = async (id: string) => {
+  const result = await User.findByIdAndDelete(id);
+  return result;
+};
+
 export const UserService = {
   createUser,
   getAllUser,
+  getSingleUser,
+  editUser,
+  deleteUser,
 };
