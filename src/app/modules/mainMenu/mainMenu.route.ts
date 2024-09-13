@@ -13,6 +13,11 @@ router.post(
 router.get('/', MainMenuController.getAllMainMenu);
 router.get('/:id', MainMenuController.getSingleMainMenu);
 router.patch('/:id', MainMenuController.editMainMenu);
+router.patch('/rearrange/menu-item', MainMenuController.rearrangeMainMenuItem);
 router.delete('/:id', MainMenuController.deleteMainMenu);
+router.delete(
+  '/:mainMenuItemId/dropdown/:dropdownItemId',
+  MainMenuController.deleteDropdownItem,
+);
 
 export const mainMenuRouter = router;

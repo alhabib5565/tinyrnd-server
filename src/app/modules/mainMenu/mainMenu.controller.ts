@@ -49,6 +49,19 @@ const editMainMenu = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const rearrangeMainMenuItem = catchAsync(
+  async (req: Request, res: Response) => {
+    const result = await MainMenuService.rearrangeMainMenuItem(req.body);
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: 'Rearrange main menu item successfully',
+      data: result,
+    });
+  },
+);
+
 const deleteMainMenu = catchAsync(async (req: Request, res: Response) => {
   const result = await MainMenuService.deleteMainMenu(req.params.id);
 
@@ -60,10 +73,27 @@ const deleteMainMenu = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteDropdownItem = catchAsync(async (req: Request, res: Response) => {
+  const { mainMenuItemId, dropdownItemId } = req.params;
+  const result = await MainMenuService.deleteDropdownItem(
+    mainMenuItemId,
+    dropdownItemId,
+  );
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Dropdown item delete successfully',
+    data: result,
+  });
+});
+
 export const MainMenuController = {
   createMainMenu,
   getAllMainMenu,
   getSingleMainMenu,
   editMainMenu,
   deleteMainMenu,
+  deleteDropdownItem,
+  rearrangeMainMenuItem,
 };

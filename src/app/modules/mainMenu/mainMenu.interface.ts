@@ -3,4 +3,5 @@ export type TMainMenu = {
   URL: string;
   order: number;
   dropdown?: TMainMenu[];
+  _id?: string;
 };
